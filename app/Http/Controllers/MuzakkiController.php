@@ -75,4 +75,13 @@ public function update(Request $request, $id)
         Muzakki::findOrFail($id)->delete();
         return redirect()->route('muzakki.index')->with('success', 'Data berhasil dihapus!');
     }
+    public function logout(Request $req)
+{
+  Auth::logout();
+  $req->session()->invalidate();
+  $req->session()->regenerateToken();
+  return redirect()->route('login');
+}
+
+
 }
